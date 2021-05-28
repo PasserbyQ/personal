@@ -35,5 +35,6 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5"
-  }
+  },
+  "homepage": "https://passerbyq.github.io/personal"
 }
