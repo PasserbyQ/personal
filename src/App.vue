@@ -1,15 +1,28 @@
 <template>
   <top-nav-bar />
   <router-view />
-  <bottom-bar style="margin-top: 50px" />
+  <bottom-bar style="margin-top: 50px" @click="moreInfo" />
 </template>
 <script lang="ts">
 import TopNavBar from "@/components/TopNavBar.vue"; // @ is an alias to /src
 import BottomBar from "@/components/BottomBar/index.vue"; // @ is an alias to /src
+import { useRouter } from "vue-router";
 export default {
   components: {
     TopNavBar,
     BottomBar,
+  },
+
+  setup() {
+    const router = useRouter();
+    const moreInfo = () => {
+      window.scrollTo(0, 0);
+      router.push("about");
+    };
+
+    return {
+      moreInfo,
+    };
   },
 };
 </script>

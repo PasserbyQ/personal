@@ -9,7 +9,6 @@
   </div>
   <case class="case-container" @more="moreCase" />
   <technology class="case-container" @more="moreTech" />
-  <!-- <character-info style="margin-top: 50px" @click="moreInfo" /> -->
 </template>
 
 <script lang="ts">
@@ -36,21 +35,18 @@ export default {
     });
 
     const moreCase = () => {
-      router.push("Case");
+      window.scrollTo(0, 0);
+      router.push("case");
     };
 
     const moreTech = () => {
-      router.push("Technology");
-    };
-
-    const moreInfo = () => {
-      router.push("About");
+      window.scrollTo(0, 0);
+      router.push("technology");
     };
 
     return {
       moreCase,
       moreTech,
-      moreInfo,
     };
   },
 };
