@@ -1,12 +1,15 @@
 <template>
   <top-nav-bar />
   <router-view />
+  <bottom-bar style="margin-top: 50px" />
 </template>
 <script lang="ts">
 import TopNavBar from "@/components/TopNavBar.vue"; // @ is an alias to /src
+import BottomBar from "@/components/BottomBar/index.vue"; // @ is an alias to /src
 export default {
   components: {
     TopNavBar,
+    BottomBar,
   },
 };
 </script>
