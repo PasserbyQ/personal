@@ -1,0 +1,32 @@
+{
+    "message": "",
+    "result": [
+        {
+            "title": "趣生活",
+            "type": "小程序",
+            "icon": "qsh"
+        },
+        {
+            "title": "同城e达",
+            "type": "小程序",
+            "icon": "city_express"
+        },
+        {
+            "title": "移动驾驶舱",
+            "type": "WebAPP",
+            "icon": "data_mob"
+        },
+        {
+            "title": "智能粮库",
+            "type": "iOS",
+            "icon": "grain"
+        },
+        {
+            "title": "钱宝网",
+            "type": "iOS",
+            "icon": "qb"
+        }
+    ],
+    "status": true,
+    "statusCode": "200"
+}

@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <div class="case-item" v-for="item in dataList" :key="item.title">
+    <div class="case-item" v-for="item in cases" :key="item.title">
+      <div
+        class="bg-icon"
+        :style="{
+          background: 'url(' + getIcon(item.icon) + ')',
+          'background-size': '100% 100%',
+        }"
+      ></div>
       <div class="info">
         <div>
           <div>{{ item.title }}</div>
@@ -14,21 +21,24 @@
   </div>
 </template>
 <script lang="ts">
-import { onMounted, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
+const dataList = require("@/json/getCaseList.json");
 
 export default {
   setup() {
     /*****************  数据声明  ***************/
-    const dataList = reactive([
-      { title: "趣生活", type: "APP", icon: "" },
-      { title: "趣生活", type: "APP", icon: "" },
-      { title: "趣生活", type: "APP", icon: "" },
-      { title: "趣生活", type: "APP", icon: "" },
-    ]);
+    // 案例
+    const cases = computed(() => {
+      return dataList.result;
+    });
+
     /*****************  生命周期  ***************/
     /*****************  自定义方法  ***************/
+    const getIcon = (icon: string) => {
+      return require(`@/assets/case/${icon}.png`);
+    };
     /*****************  网络请求  ***************/
-    return { dataList };
+    return { cases, getIcon };
   },
 };
 </script>
@@ -41,13 +51,23 @@ export default {
   padding: 100px 300px 0 300px;
 
   .case-item {
-    width: 32%;
+    width: 30%;
     height: 220px;
     background: #13df81;
     margin-bottom: 20px;
-    margin-right: 10px;
+    margin-right: 20px;
 
     position: relative;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.12);
+
+    .bg-icon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 180px;
+    }
     .info {
       position: absolute;
       left: 0;
@@ -69,7 +89,7 @@ export default {
         height: 40px;
         border-radius: 40px;
         background: #13df81;
-        opacity: 0;
+        // opacity: 0;
         img {
           width: 20px;
           height: 20px;
@@ -78,13 +98,13 @@ export default {
       }
     }
   }
-  .case-item:hover {
-    cursor: pointer;
-    box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.12);
-    .arrow-container {
-      transition: all 1s;
-      opacity: 1;
-    }
-  }
+  // .case-item:hover {
+  //   cursor: pointer;
+  //   box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.12);
+  //   .arrow-container {
+  //     transition: all 1s;
+  //     opacity: 1;
+  //   }
+  // }
 }
 </style>

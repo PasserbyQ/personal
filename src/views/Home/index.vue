@@ -7,15 +7,23 @@
       <div>学海无涯苦作舟</div>
     </div>
   </div>
-  <case class="case-container" @more="moreCase" />
-  <technology class="case-container" @more="moreTech" />
+  <case class="case-container" :data="cases" @more="moreCase" />
+  <technology class="case-container" :data="techs" @more="moreTech" />
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  toRefs,
+} from "vue";
 import Case from "./components/Case.vue"; // @ is an alias to /src
 import Technology from "./components/Technology.vue"; // @ is an alias to /src
 import { useRouter } from "vue-router";
+const homeData = require("@/json/home.json");
 
 export default {
   name: "Home",
@@ -28,6 +36,15 @@ export default {
     const router = useRouter();
     const state = reactive({
       ob: { name: "qqq", age: 10 },
+    });
+    // 案例
+    const cases = computed(() => {
+      return homeData.result.cases;
+    });
+
+    // 技术
+    const techs = computed(() => {
+      return homeData.result.technologys;
     });
 
     onMounted(() => {
@@ -45,6 +62,8 @@ export default {
     };
 
     return {
+      cases,
+      techs,
       moreCase,
       moreTech,
     };

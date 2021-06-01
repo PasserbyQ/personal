@@ -2,7 +2,15 @@
   <div>
     <top-tool title="案例" @more="more" />
     <div class="container">
-      <div class="case-item" v-for="item in dataList" :key="item.title">
+      <div
+        class="case-item"
+        :style="{
+          background: 'url(' + getIcon(item.icon) + ')',
+          'background-size': '100% 100%',
+        }"
+        v-for="item in data"
+        :key="item.title"
+      >
         <div class="info">
           <div>
             <div>{{ item.title }}</div>
@@ -24,6 +32,14 @@ export default {
   components: {
     TopTool,
   },
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
+  },
   setup(prop: any, context: any) {
     /*****************  数据声明  ***************/
     const dataList = reactive([
@@ -31,14 +47,19 @@ export default {
       { title: "趣生活", type: "APP", icon: "" },
       { title: "趣生活", type: "APP", icon: "" },
     ]);
+
     /*****************  生命周期  ***************/
     /*****************  自定义方法  ***************/
+    const getIcon = (icon: string) => {
+      return require(`@/assets/case/${icon}.png`);
+    };
     const more = () => {
       context.emit("more");
     };
     /*****************  网络请求  ***************/
     return {
       dataList,
+      getIcon,
       more,
     };
   },

@@ -23,9 +23,7 @@ export default {
       state.ob = { name: "1", age: 10 };
     };
 
-    onMounted(() => {
-      debugger;
-    });
+    onMounted(() => {});
 
     return {
       ...toRefs(state),

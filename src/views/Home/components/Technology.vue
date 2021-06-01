@@ -2,45 +2,15 @@
   <div>
     <top-tool title="技术" @more="more" />
     <div class="container">
-      <div class="tech-item">
-        <div class="title">标题</div>
+      <div class="tech-item" v-for="item in data" :key="item.title">
+        <div class="title">{{ item.title }}</div>
         <div class="content">
-          内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+          {{ item.desc }}
         </div>
         <div class="more">
           <div>
-            <div class="date year">02-25</div>
-            <div class="year">2021</div>
-          </div>
-          <div class="arrow-container">
-            <img src="@/assets/arrow_active.png" />
-          </div>
-        </div>
-      </div>
-      <div class="tech-item">
-        <div class="title">标题</div>
-        <div class="content">
-          内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-        </div>
-        <div class="more">
-          <div>
-            <div class="date year">02-25</div>
-            <div class="year">2021</div>
-          </div>
-          <div class="arrow-container">
-            <img src="@/assets/arrow_active.png" />
-          </div>
-        </div>
-      </div>
-      <div class="tech-item">
-        <div class="title">标题</div>
-        <div class="content">
-          内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-        </div>
-        <div class="more">
-          <div>
-            <div class="date year">02-25</div>
-            <div class="year">2021</div>
+            <div class="date year">{{ item.date }}</div>
+            <div class="year">{{ item.year }}</div>
           </div>
           <div class="arrow-container">
             <img src="@/assets/arrow_active.png" />
@@ -57,6 +27,14 @@ import TopTool from "@/components/TopTool.vue"; // @ is an alias to /src
 export default {
   components: {
     TopTool,
+  },
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
   },
   setup(prop: any, context: any) {
     /*****************  数据声明  ***************/
@@ -88,9 +66,16 @@ export default {
     border: 1px solid rgba(233, 233, 233, 100);
     .title {
       padding: 20px 10px;
+      font-size: 18px;
+      font-weight: bold;
     }
     .content {
-      padding: 10px;
+      margin: 10px;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
 
     .more {
