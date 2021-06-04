@@ -6,11 +6,19 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Home",
     component: () => import('../views/Home/index.vue'),
+    meta: {
+      keepAlive: true, // 需要被缓存
+    },
   },
   {
     path: "/case",
     name: "Case",
     component: () => import('../views/Case/index.vue'),
+  },
+  {
+    path: "/caseDetail/:id",
+    name: "CaseDetail",
+    component: () => import('../views/CaseDetail/index.vue'),
   },
   {
     path: "/technology",

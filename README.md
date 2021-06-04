@@ -1,4 +1,4 @@
-# vue3-demo
+# personal
 
 ## Project setup
 ```

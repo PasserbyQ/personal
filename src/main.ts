@@ -11,20 +11,3 @@ app.use(store)
 app.use(router)
 app.use(ElPopover)
 app.mount("#app");
-
-
-
-
-
-// var global
-// function f1() {
-//     function f2() {
-//         var v2 = 999
-//         v1 = 111
-//         console.log(v1)
-//     }
-//     var v1 = 666
-//     return f2
-// }
-// const f = f1()
-// f()

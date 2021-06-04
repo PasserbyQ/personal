@@ -2,7 +2,12 @@
   <div>
     <top-tool title="技术" @more="more" />
     <div class="container">
-      <div class="tech-item" v-for="item in data" :key="item.title">
+      <div
+        class="tech-item"
+        v-for="item in data"
+        :key="item.title"
+        @click="showDetail(item)"
+      >
         <div class="title">{{ item.title }}</div>
         <div class="content">
           {{ item.desc }}
@@ -40,11 +45,15 @@ export default {
     /*****************  数据声明  ***************/
     /*****************  生命周期  ***************/
     /*****************  自定义方法  ***************/
+    const showDetail = (item: any) => {
+      item.url && window.open(item.url);
+    };
     const more = () => {
       context.emit("more");
     };
     /*****************  网络请求  ***************/
     return {
+      showDetail,
       more,
     };
   },

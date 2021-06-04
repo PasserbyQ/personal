@@ -36,7 +36,8 @@ export default {
         const path = route.path;
         const index = routeList.indexOf(path);
         if (index === -1) {
-          router.replace("/");
+          // router.replace("/");
+          activeIndex.value = -1;
         } else {
           activeIndex.value = index;
         }

@@ -1,6 +1,11 @@
 <template>
   <div class="tech-container">
-    <div class="tech-item" v-for="item in technologys" :key="item.title">
+    <div
+      class="tech-item"
+      v-for="item in technologys"
+      :key="item.title"
+      @click="showDetail(item)"
+    >
       <img class="icon" :src="getIcon(item.icon)" />
       <div class="content">
         <div class="title">{{ item.title }}</div>
@@ -33,11 +38,15 @@ export default {
       return require("@/assets/logo.png");
     };
 
+    const showDetail = (item: any) => {
+      item.url && window.open(item.url);
+    };
     /*****************  网络请求  ***************/
 
     return {
       technologys,
       getIcon,
+      showDetail,
     };
   },
 };

@@ -1,12 +1,15 @@
 <template>
   <top-nav-bar />
-  <router-view />
+  <keep-alive>
+    <router-view v-if="route.meta.keepAlive"></router-view>
+  </keep-alive>
+  <router-view v-if="!route.meta.keepAlive"></router-view>
   <bottom-bar style="margin-top: 50px" @click="moreInfo" />
 </template>
 <script lang="ts">
 import TopNavBar from "@/components/TopNavBar.vue"; // @ is an alias to /src
 import BottomBar from "@/components/BottomBar/index.vue"; // @ is an alias to /src
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 export default {
   components: {
     TopNavBar,
@@ -14,6 +17,7 @@ export default {
   },
 
   setup() {
+    const route = useRoute();
     const router = useRouter();
     const moreInfo = () => {
       window.scrollTo(0, 0);
@@ -21,6 +25,7 @@ export default {
     };
 
     return {
+      route,
       moreInfo,
     };
   },

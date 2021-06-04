@@ -12,7 +12,6 @@
             href="tencent://message/?uin=1173020746&Site=qq&Menu=yes"
             ><img src="@/assets/QQ.png"
           /></a>
-          <!-- <img src="@/assets/wechat.png" @click="showWechat" /> -->
           <el-popover placement="bottom" :width="200" trigger="hover">
             <template #reference>
               <img src="@/assets/wechat.png" @click="showWechat" />
@@ -70,9 +69,10 @@
           class="case-item"
           v-for="project in item.projects"
           :key="project.title"
+          @click="showDetail(project)"
         >
           <div class="desc">
-            {{ project.desc }}
+            {{ project.introduce }}
           </div>
           <div class="info">
             <div>
@@ -91,6 +91,7 @@
 <script lang="ts">
 import { onMounted, reactive } from "vue";
 import TopTool from "@/components/TopTool.vue"; // @ is an alias to /src
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -98,6 +99,7 @@ export default {
   },
   setup() {
     /*****************  数据声明  ***************/
+    const router = useRouter();
     const majorList = reactive([
       {
         title: "前端",
@@ -141,23 +143,41 @@ export default {
         projects: [
           {
             title: "移动驾驶舱",
-            desc:
-              "项目介绍:用户通过应用查看公司业务量、订单量、派件量等件量数据，并包含利润、时效、服务质量等模块",
-            icon: require("@/assets/logo.png"),
-            type: "WebApp(独立开发)",
-          },
-          {
-            title: "同城 e 达",
-            desc:
-              "项目介绍:用于同城派单业务，通过小程序可下同城单，app 端骑手会接收到接单请求， 形成一套完整的派送链",
-            icon: require("@/assets/logo.png"),
-            type: "小程序(团队合作)",
+            type: "WebAPP",
+            icon: "data_mob",
+            introduce:
+              "用户通过应用查看公司业务量、订单量、派件量等件量数据，并包含利润、时 效、服务质量等模块",
+            descList: [
+              "参与需求评审，与项目经理和技术团队进行充分的沟通，开发创建性高，高可用性的 移动端的 WebApp",
+              "参与移动产品和项目制作，配合后台开发人员实现产品前端界面效果与功能。",
+              "负责移动产品 HTML5、CSS3 的编写，解决 web 端和移动端适配问题等。",
+              "实现产品 UI 和交互方面的开发需求，确保产品具有优质的用户使用体验。",
+            ],
+            company: "zto",
           },
           {
             title: "趣生活",
-            desc: "项目介绍:包含动态广场、话题、文章及小视频模块生活类小程序",
-            icon: require("@/assets/logo.png"),
-            type: "小程序(独立开发)",
+            type: "小程序",
+            icon: "qsh",
+            introduce: "包含动态广场、话题、文章及小视频模块生活类小程序",
+            descList: [
+              "需求调研及prd及UI设计。",
+              "采用云开发模式进行后台存储文章、视频等。",
+              "使用 swiper-video 实现小程序员小视频开发。",
+            ],
+            company: "zto",
+          },
+          {
+            title: "同城e达",
+            type: "小程序",
+            icon: "city_express",
+            introduce:
+              "用于同城派单业务，通过小程序可下同城单，app 端骑手会接收到接单请求， 形成一套完整的派送链",
+            descList: [
+              "参与需求评审，参与产品和项目制作，配合后台人员实现产品界面效果与功能。",
+              "负责地址簿页面及我的页面开发。",
+            ],
+            company: "zto",
           },
         ],
       },
@@ -169,10 +189,18 @@ export default {
         projects: [
           {
             title: "智能粮库",
-            desc:
-              "项目介绍:用户通过移动设备远程控制粮库内温湿度传感器等，达到储存粮食的最佳条件， 同时可以通过移动设备控制粮车进出仓的流程操作",
-            icon: require("@/assets/logo.png"),
             type: "iOS",
+            icon: "grain",
+            introduce:
+              "用户通过移动设备远程控制粮库内温湿度传感器等，达到储存粮食的最佳条件， 同时可以通过移动设备控制粮车进出仓的流程操作",
+            descList: [
+              "根据用户需求说明书，与产品部对项目进行功能分析和策划。",
+              "负责智能粮库框架搭建、前后端联调。",
+              "设计实时控制粮仓内设备运行框架。",
+            ],
+            url:
+              "https://apps.apple.com/cn/app/%E6%99%BA%E8%83%BD%E7%B2%AE%E5%BA%93/id1245518089",
+            company: "dl",
           },
         ],
       },
@@ -184,10 +212,17 @@ export default {
         projects: [
           {
             title: "钱宝网",
-            desc:
-              "项目介绍:综合性商城应用，同时包含发布任务、悬赏、微商功能、 和 IM 包含 单聊、群聊、好友、公众号等功能",
-            icon: require("@/assets/logo.png"),
             type: "iOS",
+            icon: "qb",
+            introduce:
+              "是一个综合性商城应用，同时包含发布任务、悬赏、微商功能、 和 IM 包含 单聊、群聊、好友、公众号等功能，支持文本、红包、图片、语音、表情、地理位置、商 品、订单信息等内容的发送与接收。",
+            descList: [
+              "参与项目的构建以及迭代维护，参与日常技术方案选型。",
+              "参与 IM 需求分析及实现方案设计，IM 模块底层架构重建。",
+              "IM SDK 开发和对外接口调试工作，打包静态库供其他部门使用。",
+              "IM 项目优化，聊天数据持久化处理以及缓冲区和重发消息机制处理。",
+            ],
+            company: "qb",
           },
         ],
       },
@@ -195,16 +230,22 @@ export default {
     /*****************  生命周期  ***************/
 
     /*****************  自定义方法  ***************/
-    const showWechat = () => {
-      console.log(111);
+    const showDetail = (item: any) => {
+      window.scrollTo(0, 0);
+      const id = item.icon;
+      router.push({
+        name: "CaseDetail",
+        params: {
+          id: id,
+        },
+      });
     };
-
     /*****************  网络请求  ***************/
 
     return {
       dataList,
       majorList,
-      showWechat,
+      showDetail,
     };
   },
 };
@@ -354,7 +395,11 @@ export default {
     position: relative;
     cursor: pointer;
     .desc {
-      padding: 10px;
+      margin: 10px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
     }
     .info {
       position: absolute;

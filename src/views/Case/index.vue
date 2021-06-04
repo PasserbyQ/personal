@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <div class="case-item" v-for="item in cases" :key="item.title">
+    <div
+      class="case-item"
+      v-for="item in cases"
+      :key="item.title"
+      @click="showDetail(item)"
+    >
       <div
         class="bg-icon"
         :style="{
@@ -22,11 +27,13 @@
 </template>
 <script lang="ts">
 import { computed, onMounted, reactive } from "vue";
+import { useRouter } from "vue-router";
 const dataList = require("@/json/getCaseList.json");
 
 export default {
   setup() {
     /*****************  数据声明  ***************/
+    const router = useRouter();
     // 案例
     const cases = computed(() => {
       return dataList.result;
@@ -37,8 +44,19 @@ export default {
     const getIcon = (icon: string) => {
       return require(`@/assets/case/${icon}.png`);
     };
+
+    const showDetail = (item: any) => {
+      window.scrollTo(0, 0);
+      const id = item.icon;
+      router.push({
+        name: "CaseDetail",
+        params: {
+          id: id,
+        },
+      });
+    };
     /*****************  网络请求  ***************/
-    return { cases, getIcon };
+    return { cases, getIcon, showDetail };
   },
 };
 </script>

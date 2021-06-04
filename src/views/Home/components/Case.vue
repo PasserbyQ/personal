@@ -10,6 +10,7 @@
         }"
         v-for="item in data"
         :key="item.title"
+        @click="showDetail(item)"
       >
         <div class="info">
           <div>
@@ -27,6 +28,7 @@
 <script lang="ts">
 import { onMounted, reactive } from "vue";
 import TopTool from "@/components/TopTool.vue"; // @ is an alias to /src
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -42,6 +44,7 @@ export default {
   },
   setup(prop: any, context: any) {
     /*****************  数据声明  ***************/
+    const router = useRouter();
     const dataList = reactive([
       { title: "趣生活", type: "APP", icon: "" },
       { title: "趣生活", type: "APP", icon: "" },
@@ -56,11 +59,22 @@ export default {
     const more = () => {
       context.emit("more");
     };
+    const showDetail = (item: any) => {
+      window.scrollTo(0, 0);
+      const id = item.icon;
+      router.push({
+        name: "CaseDetail",
+        params: {
+          id: id,
+        },
+      });
+    };
     /*****************  网络请求  ***************/
     return {
       dataList,
       getIcon,
       more,
+      showDetail,
     };
   },
 };
