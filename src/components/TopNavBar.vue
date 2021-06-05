@@ -1,8 +1,8 @@
 <template>
   <div class="nav-bar">
     <div class="title">
-      <span class="title-item">秦</span>
-      <span class="title-item">雨</span>
+      <span class="title-item">技</span>
+      <span class="title-item">术</span>
     </div>
     <div class="menu">
       <div

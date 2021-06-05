@@ -19,7 +19,7 @@ export default {
   setup() {
     /*****************  数据声明  ***************/
     const userInfo = reactive({
-      name: "秦雨",
+      name: "技术",
       desc: "三年原生开发经验，两年前端开发经验，专注技术",
       links: [
         {
